@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar.vue'
+import Breadcrumb from './components/Breadcrumb.vue'
 </script>
 
 <template>
@@ -14,13 +15,7 @@ import Sidebar from './components/Sidebar.vue'
           <Sidebar />
         </div>
         <div class="col-9">
-          <h1>Hola</h1>
-          <div>
-            <b-button>Button</b-button>
-            <b-button variant="danger">Button</b-button>
-            <b-button variant="success">Button</b-button>
-            <b-button variant="outline-primary">Button</b-button>
-          </div>
+          <router-view></router-view>
         </div>
       </div>
     </div>

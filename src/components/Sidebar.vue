@@ -1,19 +1,15 @@
 <template>
-    <div class="sidebarStyle">
-        <h1>Sidebar</h1>
-        <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-        </p>
-        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
-    </div>
-</template>
+  <b-nav vertical class="pt-5">
+    <b-nav-item exact-active-class="active">
+      <b-link :to="{ name: 'inicio' }">Tienda de juguetes</b-link>
+    </b-nav-item>
 
-<style scoped>
-.sidebarStyle {
-    background-color: #3498db;
-    color: #fff;
-    height: 100%;
-    padding: 20px;
-}
-</style>
+    <b-nav-item exact-active-class="active">
+      <b-link :to="{ name: 'componente' }">Tienda de electrodomesticos</b-link>
+    </b-nav-item>
+
+    <b-nav-item exact-active-class="active">
+      <b-link :to="{ name: 'componente1' }">Tienda de productos para el hogar</b-link>
+    </b-nav-item>
+  </b-nav>
+</template>
