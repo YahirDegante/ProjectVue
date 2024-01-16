@@ -21,21 +21,35 @@ const routes = [
                 component: () => import('../components/Inicio.vue')
             },
             {
-                path: '/componente',
-                name: 'componente',
-                component: () => import('../components/Componente.vue')
-            },
-            {
-                path:'/componente1',
-                name: 'componente1',
-                component: () => import('../components/Componente1.vue')
-            },
-            {
-                path:'/electronics',
+                path: '/electronics',
                 name: 'electronics',
-                component: () => import('../components/Electronics.vue')
+                component: () => import('../components/ToysStore/Electronics.vue')
             },
-
+            {
+                path: '/videogames',
+                name: 'videogames',
+                component: () => import('../components/ToysStore/VideoGames.vue')
+            },
+            {
+                path: '/kitchen',
+                name: 'kitchen',
+                component: () => import('../components/AppliancesStore/Kitchen.vue')
+            },
+            {
+                path:'/stove',
+                name:'stove',
+                component: () => import('../components/AppliancesStore/Stove.vue')
+            },
+            {
+                path:'/cleaningProducts',
+                name:'cleaningProducts',
+                component: ()=> import ('../components/HomeProductsStore/CleaningProducts.vue')
+            },
+            {
+                path:'/industrialDetergents',
+                name:'industrialDetergents',
+                component: ()=> import ('../components/HomeProductsStore/IndustrialDetergents.vue')
+            }
         ]
     }
 

@@ -1,5 +1,16 @@
 <template>
     <div>
-        <h1>Juegos de Video</h1>
+        <BreadToyStoreVue />
+        <h1>Video Juegos</h1>
     </div>
 </template>
+
+<script>
+import BreadToyStoreVue from './BreadToyStore.vue'
+
+export default {
+    components: {
+        BreadToyStoreVue,
+    },
+};
+</script>  

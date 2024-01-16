@@ -1,7 +1,6 @@
 <script setup>
 import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar.vue'
-import Breadcrumb from './components/Breadcrumb.vue'
 </script>
 
 <template>

@@ -1,5 +1,16 @@
 <template>
     <div>
-        <h1>Productos de limpieza</h1>
+        <BreadHomeProductsVue />
+        <h1>Productos de Limpieza</h1>
     </div>
 </template>
+
+<script>
+import BreadHomeProductsVue from './BreadHomeProducts.vue';
+
+export default {
+    components: {
+        BreadHomeProductsVue,
+    },
+};
+</script>  
