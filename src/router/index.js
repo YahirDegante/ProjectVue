@@ -5,21 +5,20 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        redirect: '/inicio'
+        component:()=>import('../components/Inicio.vue')
     },
     {
-        path: '/',
-        component:{
-            render(c){
-                return c('router-view');
-            },
-        },
+        path: '/formulario',
+        component:()=>import('../components/formulario.vue')
+    },
+    {
+        path: '*',
+        component:()=>import('../views/ErrorPage.vue')
+    },
+    {
+        path: '/inicio',
+        component:()=>import('../components/Inicio.vue'),
         children:[
-            {
-                path: '/inicio',
-                name: 'inicio',
-                component: () => import('../components/Inicio.vue')
-            },
             {
                 path: '/electronics',
                 name: 'electronics',
