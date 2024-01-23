@@ -1,111 +1,121 @@
 <template>
   <div>
-    <form id="app" @submit="checkForm" method="post">
-      <b-alert variant="danger" dismissible :show="errors.length > 0">
-        <b>{{
-          errors.length > 1
-            ? "Please correct the following errors:"
-            : "Please correct the following error:"
-        }}</b>
-        <ul>
-          <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul>
-      </b-alert>
-      <h2>Informacion Personal</h2>
-      <p>
-        <label for="name">Nombre</label>
-        <input id="name" type="text" />
-      </p>
-
-      <p>
-        <label for="f_lastName">Apellido Paterno</label>
-        <input id="f_lastName" type="text" />
-      </p>
-
-      <p>
-        <label for="m_lastName">Apellido Materno</label>
-        <input id="m_lastName" type="text" />
-      </p>
-      <h2>Direccion</h2>
-      <p>
-        <label for="postalCode">Codigo Postal</label>
-        <input id="postalCode" type="number" />
-      </p>
-
-      <p>
-        <label for="streetDirection">Calle</label>
-        <input id="streetDirection" type="text" />
-      </p>
-      <p>
-        <label for="numberDirection">numero</label>
-        <input id="numberDirection" type="number" />
-      </p>
-      <p>
-        <label for="city">Ciudad</label>
-        <input id="city" type="text" />
-      </p>
-      <h2>Informacion Adicional</h2>
-      <p>
-        <label for="age">Edad</label>
-        <input id="age" type="number" />
-      </p>
-
-      <p>
-        <label for="email">Email</label>
-        <input id="email" v-model="email" type="email" name="email" />
-      </p>
-
-      <p>
-        <label for="cellphoneNumber">Numero de telefono</label>
-        <input id="cellphoneNumber" type="number" />
-      </p>
-      <p>
+    <h1>Formulario</h1>
+    <form @submit.prevent="submitForm">
+      <h2>Información personal</h2>
+      <div style="display: flex;">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" v-model="nombre" @blur="validarNombre">
+        <div v-show="nombreError" style="color: red;">{{ nombreError }}</div>
+        <label for="apellidoPaterno">Apellido Paterno:</label>
+        <input type="text" id="apellidoPaterno" v-model="apellidoPaterno" @blur="validarApellidoPaterno">
+        <div v-show="apellidoPaternoError" style="color: red;">{{ apellidoPaternoError }}</div>
+        <label for="apellidoMaterno">Apellido Materno:</label>
+        <input type="text" id="apellidoMaterno" v-model="apellidoMaterno">
+      </div>
+      <h2>Dirección</h2>
+      <div style="display: fle;">
+        <label for="codigoPostal">Código Postal:</label>
+        <input type="number" id="codigoPostal">
+        <label for="calle">Calle:</label>
+        <input type="text" id="calle">
+        <label for="numero">Número:</label>
+        <input type="number" id="numero">
+        <br/>
+        <br/>
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad">
+      </div>
+      <h2>Información adicional</h2>
+      <div style="display: flex;">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" v-model="fechaNacimiento" @change="validarFechaNacimiento">
+        <div v-show="fechaNacimientoError" style="color: red;">{{ fechaNacimientoError }}</div>
+        <label for="correoElectronico">Correo Electrónico:</label>
+        <input type="text" id="correoElectronico" v-model="correoElectronico" @blur="validarCorreo">
+        <div v-show="correoElectronicoError" style="color: red;">{{ correoElectronicoError }}</div>
+        <label for="numeroTelefonico">Número Telefónico:</label>
+        <input type="number" id="numeroTelefonico" v-model="numeroTelefonico" @blur="validarTelefono">
+        <div v-show="telefonoError" style="color: red;">{{ telefonoError }}</div>
+      </div>
+      <br />
+      <div>
         <label for="photo">Foto</label>
-        <input id="photo" type="file" @change="handlePhotoUpload" />
-      </p>
-
-      <p>
-        <input type="submit" value="Submit" />
-      </p>
+        <input id="photo" type="file" @change="validarTamanio" />
+        <div v-show="photoError" style="color: red;">{{ photoError }}</div>
+      </div>
+      <br />
+      <button type="submit">Enviar</button>
     </form>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-
-export default Vue.extend({
+import Vue from 'vue';
+export default {
   data() {
     return {
-      errors: [],
-      name: null,
-      f_lastName: null,
-      email:null,
+      nombre: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
+      nombreError: '',
+      apellidoPaternoError: '',
+      numeroTelefonico: '',
+      telefonoError: '',
+      correoElectronico: '',
+      correoElectronicoError: '',
+      fechaNacimiento: '',
+      fechaNacimientoError: '',
+      photoError: ''
     };
   },
   methods: {
-    checkForm: function (e) {
-      this.errors = [];
-
-      if (!this.name) {
-        this.errors.push("nombre Requerido");
-      }
-      if(!this.f_lastName){
-        this.errors.push("Apellido Paterno Requerido")
-      }
-
-      if (!this.email) {
-        this.errors.push("Email required.");
-      } else if (!this.validEmail(this.email)) {
-        this.errors.push("Valid email required.");
-      }
-
-      if (!this.errors.length) {
-        return true;
-      }
-
-      e.preventDefault();
+    validarNombre() {
+      this.nombreError = this.nombre.trim() === '' ? 'El nombre no puede estar vacío' : '';
     },
-  },
-});
+    validarApellidoPaterno() {
+      this.apellidoPaternoError = this.apellidoPaterno.trim() === '' ? 'El apellido paterno no puede estar vacío' : '';
+    },
+    validarFechaNacimiento() {
+      const fechaNacimiento = new Date(this.fechaNacimiento);
+      const fechaActual = new Date();
+      const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+      console.log(edad);
+      if (edad < 18 || edad > 18) {
+        this.fechaNacimientoError = 'Tu edad debe ser de 18 años';
+      }
+    },
+    validarTelefono() {
+      if (this.numeroTelefonico.length != 10) {
+        this.telefonoError = 'El numero debe tener 10 digitos';
+      }
+    },
+    validarCorreo() {
+      const correo = this.correoElectronico;
+      const expresion = /\w+@\w+\.+[a-z]/;
+      if (!expresion.test(correo)) {
+        this.correoElectronicoError = 'El correo no es válido';
+      }
+    },
+    validarTamanio() {
+      const photo = document.getElementById('photo');
+      const photoSize = photo.files[0].size;
+      if (photoSize > 3000000) {
+        this.photoError = 'La foto no debe pesar más de 3MB';
+      }
+    },
+    validarFormulario() {
+      this.validarNombre();
+      this.validarApellidoPaterno();
+      this.validarFechaNacimiento();
+      this.validarCorreo();
+      this.validarTelefono();
+      this.validarTamanio();
+    },
+    submitForm() {
+      this.validarFormulario();
+      console.log('Formulario enviado con éxito');
+    }
+  }
+};
 </script>

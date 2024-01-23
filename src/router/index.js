@@ -4,19 +4,22 @@ import Vue from "vue";
 Vue.use(VueRouter);
 const routes = [
     {
-        path: '/',
+        path: '/inicio',
+        name: 'inicio',
         component:()=>import('../components/Inicio.vue')
     },
-    {
-        path: '/formulario',
-        component:()=>import('../components/formulario.vue')
-    },
+    // {
+    //     path: '/formulario',
+    //     name: 'formulario',
+    //     component:()=>import('../components/Formulario.vue')
+    // },
     {
         path: '*',
         component:()=>import('../views/ErrorPage.vue')
     },
     {
         path: '/inicio',
+        name: 'inicio',
         component:()=>import('../components/Inicio.vue'),
         children:[
             {
@@ -48,7 +51,12 @@ const routes = [
                 path:'/industrialDetergents',
                 name:'industrialDetergents',
                 component: ()=> import ('../components/HomeProductsStore/IndustrialDetergents.vue')
-            }
+            },
+            {
+                path: '/formulario',
+                name: 'formulario',
+                component:()=>import('../components/Formulario.vue')
+            },
         ]
     }
 

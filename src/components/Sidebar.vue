@@ -11,6 +11,10 @@
     <b-nav-item :class="{ 'active': isActive(['cleaningProducts', 'industrialDetergents']) }">
       <b-link :to="{ name: 'cleaningProducts' }" class="linkStyle">Tienda de productos para el hogar</b-link>
     </b-nav-item>
+    
+    <b-nav-item :class="{ 'active': isActive('formulario') }">
+      <b-link :to="{ name: 'formulario' }" class="linkStyle">Fomrulario</b-link>
+    </b-nav-item>
   </b-nav>
 </template>
 
