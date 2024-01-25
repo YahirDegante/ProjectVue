@@ -8,6 +8,11 @@ const routes = [
         name: 'inicio',
         component:()=>import('../components/Inicio.vue')
     },
+    {
+        path:'/paginacion',
+        name:'paginacion',
+        component:()=>import('../components/Persona.vue')
+    },
     // {
     //     path: '/formulario',
     //     name: 'formulario',
